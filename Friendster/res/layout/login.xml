@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000012" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="80dp"
+        android:text="Username :  "
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#c8c8c8" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:text=":: Login ::"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#c8c8c8" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView1"
+        android:layout_alignTop="@+id/textView1"
+        android:layout_toRightOf="@+id/textView1"
+        android:background="#ffffff"
+        android:ems="10"
+        android:textColor="#000000" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/textView3"
+        android:layout_toRightOf="@+id/textView1"
+        android:background="#ffffff"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/username"
+        android:layout_marginTop="36dp"
+        android:text="Password :"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#c8c8c8" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="#c8c8c8"
+        android:minHeight="50dip"
+        android:minWidth="100dip"
+        android:text="User Login"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/fail1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:text="Invalid Username or Password"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#c8c8c8" />
+
+    <TextView
+        android:id="@+id/fail2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fail1"
+        android:layout_centerHorizontal="true"
+        android:text="Enter Valid Username and Password"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#c8c8c8" />
+
+    <Button
+        android:id="@+id/register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button1"
+        android:layout_below="@+id/fail2"
+        android:layout_marginTop="18dp"
+        android:background="#c8c8c8"
+        android:minHeight="50dp"
+        android:minWidth="100dp"
+        android:text="Register"
+        android:textColor="#000000" />
+
+</RelativeLayout>
