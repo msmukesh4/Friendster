@@ -2,8 +2,13 @@
 	$image = $_POST["image"];
 	$name = $_POST["name"];
 
-	$decodeImage = base64_decode("$image");
-	file_put_contents($name . ".png", $decodeImage);
+	if ($name!="") {
+		$decodeImage = base64_decode("$image");
+		file_put_contents($name . ".png", $decodeImage);
+	}else{
+		echo "Name is empty so no picture is saved : ";
+	}
+	
 
 	// Setting the authentication and connecting the php file with the database
 
@@ -19,25 +24,21 @@
 		//Print when any error occers...
 		echo " Failed to connect to MySQL : (" . $mysqli->maxdb_connect_errno . ")" . $mysqli->connect_error;
 	}
-	echo $mysqli->host_info . "\n";
 
-	//Querying and storing it in $res variable
-	$res = $mysqli->query("SELECT ID,NAME,TIME FROM ImageList");
-	echo "Result found";
-	
-	//Starting $res From Start...
-	$res->data_seek(0);
-	while ($row = $res->fetch_assoc()) {
-		echo "  Name = " . $row['NAME'] . "\n" . " ID = " . $row['ID'] . " TIME = " . $row['TIME'];
-
-	}
-	
-	$sql = "INSERT INTO ImageList(NAME) VALUES ('$name')";
-	if ($mysqli->query($sql))
-	{
-		echo "Insertion Successful";
+	//checking the caption enter by user is null or not
+	//if null exitting
+	//else execute query
+	if ($name=="") {
+		echo "Name is Empty so no Insertion";	
 	}else{
+		$sql = "INSERT INTO ImageList(NAME) VALUES ('$name')";
+		if ($mysqli->query($sql)){
+			echo "1";
+		}else{
 		echo "Insertion Unsuccessful";
+		}
 	}
+	
+	
 
 ?>

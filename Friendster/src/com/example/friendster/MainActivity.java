@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import android.app.Activity;
@@ -23,6 +25,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
  
 public class MainActivity extends Activity {
@@ -30,8 +33,9 @@ public class MainActivity extends Activity {
     Button upload,select_image,retrive;
     ImageView image;
     EditText caption;
+    TextView wait;
     Thread t;
-    String image_str;
+    String image_str,response;
     Bitmap bitmap;
     ByteArrayOutputStream stream;
     private static int RESULT_LOAD_IMAGE = 1;
@@ -46,7 +50,9 @@ public class MainActivity extends Activity {
             select_image = (Button) findViewById(R.id.button2);
             image = (ImageView) findViewById(R.id.imageView1);
             caption = (EditText) findViewById(R.id.editText1);
-            retrive = (Button) findViewById(R.id.button3);           
+            retrive = (Button) findViewById(R.id.button3);  
+            wait = (TextView) findViewById(R.id.upload_text);
+            wait.setVisibility(View.INVISIBLE);
  
             upload.setOnClickListener(new OnClickListener() {				
 				@Override
@@ -69,6 +75,15 @@ public class MainActivity extends Activity {
 							@Override
 							public void run() {
 								// TODO Auto-generated method stub
+								runOnUiThread(new Runnable() {
+									
+									@Override
+									public void run() {
+										// TODO Auto-generated method stub
+										wait.setVisibility(View.VISIBLE);
+										caption.setText("");
+									}
+								});
 								upload();								
 							}
 						});
@@ -109,19 +124,20 @@ public class MainActivity extends Activity {
                 HttpClient httpclient = new DefaultHttpClient();
                 HttpPost httppost = new HttpPost("http://webserver123.esy.es/Images/SaveImage.php");
                 httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-                HttpResponse response = httpclient.execute(httppost);	
-                final long s =  response.getEntity().getContentLength();
+                ResponseHandler<String> handler = new BasicResponseHandler();
+                response = httpclient.execute(httppost,handler);	
+                final long s =  response.length();
                 runOnUiThread(new Runnable() {
 					
 					@Override
 					public void run() {
 						// TODO Auto-generated method stub
-						if (s==0) {
+						if (response.equalsIgnoreCase("1")) {
 							Toast.makeText(MainActivity.this,"Upload Successful",Toast.LENGTH_LONG).show();
-						}										
-						Toast.makeText(MainActivity.this,"Content Length"+s,Toast.LENGTH_LONG).show();
-						Toast.makeText(MainActivity.this,"Upload Successful",Toast.LENGTH_LONG).show();
-
+							wait.setVisibility(View.INVISIBLE);
+						}
+//							Toast.makeText(MainActivity.this,"Content Length"+s,Toast.LENGTH_LONG).show();
+						
 					}
 				});
                 

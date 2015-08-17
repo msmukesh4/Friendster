@@ -109,4 +109,15 @@
         android:minWidth="85dp"
         android:text="Register" />
 
+    <TextView
+        android:id="@+id/hide3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_register_form"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:text="Please Provide Legal Values !!"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#c8c8c8" />
+
 </RelativeLayout>

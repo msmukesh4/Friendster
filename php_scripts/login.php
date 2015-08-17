@@ -1,5 +1,5 @@
 <?php
-	$user = $_POST['username'];
+	$userna = $_POST['username'];
 	$pass = $_POST['password'];
 	$success = 0;
 
@@ -22,13 +22,13 @@
 
 	while ($row = $UserList->fetch_assoc()) {
 		// if ($row['USERNAME']=="mike" && $row['PASSWORD']=="mike") {
-		if ($row['USERNAME']==$user && $row['PASSWORD'==$pass]) {
+		if ($row['USERNAME']==$userna && $row['PASSWORD']==$pass) {
 			# code...
 			$success++;
 		}		
 	}
 
 	echo "".$success;
-
+	$success =0;
 
 ?>

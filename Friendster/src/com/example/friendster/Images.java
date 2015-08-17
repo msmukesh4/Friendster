@@ -89,7 +89,6 @@ public class Images extends Activity implements OnItemClickListener{
 	}
 	private class myAdapter extends BaseAdapter{
 
-		ImageView iv;
 		View row;
 		LayoutInflater inflater;
 		public myAdapter(Context context) {
@@ -132,7 +131,6 @@ public class Images extends Activity implements OnItemClickListener{
 				inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 				row = inflater.inflate(R.layout.individual_image,parent,false);
 				holder = new myHolder(row);
-				
 				row.setTag(holder);
 			}else{
 				holder = (myHolder) row.getTag();
