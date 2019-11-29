@@ -27,6 +27,7 @@
         <activity android:name=".MainActivity"/>
         <activity android:name=".Images" />
         <activity android:name=".Images_Comment" />
+        
         <activity android:name=".Register"/>
     </application>
 
